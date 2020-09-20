@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/thinkful-ei-shark/dominic-faulring-bookmarks-app#readme",
   "dependencies": {
+    "@babel/polyfill": "^7.11.5",
     "jquery": "^3.5.1",
     "unique-names-generator": "^4.3.1"
   },
