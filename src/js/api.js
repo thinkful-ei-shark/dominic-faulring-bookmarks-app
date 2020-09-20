@@ -1,11 +1,5 @@
+import store from '../store';
 const API_URL = 'https://thinkful-list-api.herokuapp.com';
-
-const store = {
-  bookmarks: [],
-  adding: false,
-  error: null,
-  filter: 0
-};
 
 async function getBookmarks() {
   try {

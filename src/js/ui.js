@@ -1,22 +1,6 @@
 import api from './api';
 import bookmarks from './bookmarks';
-
-// Template Generator Functions
-function createHeader() {
-  return `
-    <header>
-      <h1>Bookmarks App</h1>
-    </header>
-  `;
-}
-
-function createMain() {
-  return `
-    <main>
-      <h1>Main</h1>
-    </main>
-  `;
-}
+import Header from '../components/Header';
 
 async function createBookmarksList() {
   const bookmarks = await api.getBookmarks();
@@ -47,16 +31,12 @@ function createAddBookmarkForm() {
   `;
 }
 
-// Render Functions
-function renderCreateHeader() {}
-
 async function render() {
-  $('#root').html(
-    createHeader() +
-      createMain() +
-      createAddBookmarkForm() +
-      (await createBookmarksList())
-  );
+  $('#root').html(`
+    ${Header()}
+    ${createAddBookmarkForm()} 
+    ${await createBookmarksList()}
+  `);
   bookmarks.handleBookmarkSubmit();
   bookmarks.handleBookmarkDelete();
 }

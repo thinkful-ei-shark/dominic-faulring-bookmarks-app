@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import './styles/main.css';
+import './styles/main.scss';
 import ui from './js/ui';
 
 async function init() {
