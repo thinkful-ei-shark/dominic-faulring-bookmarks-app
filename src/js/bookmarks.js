@@ -12,7 +12,7 @@ function handleBookmarkSubmit() {
 
     // @TODO - Handle input checks here?
 
-    await api.addBookmark(bookmark({ title, url, rating, desc }));
+    await api.addBookmark(await bookmark({ title, url, rating, desc }));
     return ui.render();
   });
 }
