@@ -62,8 +62,7 @@ header {
 .bookmark-list {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  // gap: 1.6rem 0;
-  background-color: #fff;
+  gap: 1.6rem 0;
 
   &__item {
     display: flex;
@@ -71,6 +70,12 @@ header {
     height: 24rem;
     box-shadow: 0 0.1rem 0.2rem 0 rgba($color: #000, $alpha: 0.15);
     position: relative;
+    background-color: #fff;
+
+    &__thumbnail {
+      width: 100%;
+      height: 60%;
+    }
 
     &__link-icon {
       position: absolute;

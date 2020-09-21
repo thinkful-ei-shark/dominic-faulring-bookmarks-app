@@ -3,7 +3,7 @@ const API_URL = 'https://thinkful-list-api.herokuapp.com';
 
 async function getBookmarks() {
   try {
-    const res = await fetch(`${API_URL}/dom/bookmarks`);
+    const res = await fetch(`${API_URL}/dominic/bookmarks`);
     store.bookmarks = await res.json();
     return store.bookmarks;
   } catch (err) {
@@ -13,7 +13,7 @@ async function getBookmarks() {
 
 async function addBookmark({ title, url, desc, rating }) {
   try {
-    const res = await fetch(`${API_URL}/dom/bookmarks`, {
+    const res = await fetch(`${API_URL}/dominic/bookmarks`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -29,7 +29,7 @@ async function addBookmark({ title, url, desc, rating }) {
 
 async function deleteBookmark(id) {
   try {
-    await fetch(`${API_URL}/dom/bookmarks/${id}`, {
+    await fetch(`${API_URL}/dominic/bookmarks/${id}`, {
       method: 'DELETE'
     });
   } catch (err) {
