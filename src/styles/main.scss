@@ -64,12 +64,13 @@ header {
   grid-template-columns: repeat(1, 1fr);
   // gap: 1.6rem 0;
   background-color: #fff;
-  position: relative;
 
   &__item {
     display: flex;
+    flex-direction: column;
     height: 24rem;
     box-shadow: 0 0.1rem 0.2rem 0 rgba($color: #000, $alpha: 0.15);
+    position: relative;
 
     &__link-icon {
       position: absolute;

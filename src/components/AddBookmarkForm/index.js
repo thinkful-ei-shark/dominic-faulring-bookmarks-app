@@ -4,9 +4,11 @@ function AddBookmarkForm() {
       <label for="title">Title</label>
       <input class="add-bookmark-form__input" type="text" name="title" id="title">
       <label for="rating">Rating</label>
-      <input class="add-bookmark-form__input" type="number" id="rating">
+      <input class="add-bookmark-form__input" type="number" min="1" max="5" id="rating">
       <label for="url">URL</label>
       <input class="add-bookmark-form__input" type="url" id="url">
+      <label for="description">Description</label>
+      <input class="add-bookmark-form__input" type="description" id="url">
       <button class="add-bookmark-form__btn" type="submit">Add Bookmark</button>
     </form>
   `;
