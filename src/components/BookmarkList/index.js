@@ -1,8 +1,9 @@
+import store from '../../store';
 import BookmarkItem from '../BookmarkItem';
-function BookmarkList(bookmarks) {
+function BookmarkList() {
   return `
     <section class="bookmark-list">
-      ${bookmarks.map((bookmark) => `${BookmarkItem(bookmark)}`).join('')}
+      ${store.bookmarks.map((bookmark) => `${BookmarkItem(bookmark)}`).join('')}
     </section>
   `;
 }

@@ -21,8 +21,24 @@ body {
 h1,
 h2,
 h3,
-p {
+p,
+ul {
   margin: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+button {
+  outline: none;
+  cursor: pointer;
+  border: none;
+}
+
+.hide {
+  display: none;
 }
 
 #root {
@@ -37,6 +53,54 @@ header {
   }
 
   margin-bottom: 4rem;
+}
+
+.filter-bookmarks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 49%;
+  background-color: #7215d8;
+  height: 4.8rem;
+  color: #fff;
+  font-weight: bold;
+
+  ul {
+    display: flex;
+  }
+}
+
+// Add and Filter Buttons
+.add-filter-btns {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+
+  button {
+    height: 4.8rem;
+    width: 49%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3.2rem;
+    background-color: #7215d8;
+    color: #fff;
+    font-weight: 700;
+
+    span {
+      margin-right: 1.6rem;
+    }
+  }
+}
+
+.filter-dropdown {
+  // display: none;
+  position: absolute;
+  // display: inline-block;
+  top: 4.8rem;
+  right: 0;
+  z-index: 1000;
 }
 
 // Add Bookmark Form
@@ -55,6 +119,8 @@ header {
 
   &__btn {
     margin-top: 1.6rem;
+    height: 4.8rem;
+    cursor: pointer;
   }
 }
 
@@ -67,10 +133,10 @@ header {
   &__item {
     display: flex;
     flex-direction: column;
-    height: 24rem;
     box-shadow: 0 0.1rem 0.2rem 0 rgba($color: #000, $alpha: 0.15);
     position: relative;
     background-color: #fff;
+    height: 24rem;
 
     &__thumbnail {
       background: url('https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif')
@@ -80,14 +146,29 @@ header {
       height: 60%;
     }
 
-    &__link-icon {
-      position: absolute;
-      right: 0.8rem;
-      top: 0.8rem;
-      background-color: #fff;
-      box-shadow: 1px 1px 1px 1px rgba($color: #000, $alpha: 0.2);
-      padding: 1rem;
-      border-radius: 100%;
+    &__btns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      height: 4.8rem;
+
+      a {
+        display: flex;
+        justify-content: center;
+        background-color: #2e8540;
+        cursor: pointer;
+        border-left: 1px solid #000;
+        border-right: 1px solid #000;
+      }
+
+      button {
+        border: none;
+        cursor: pointer;
+        background-color: #4773aa;
+
+        &:last-child {
+          background-color: #e31c3d;
+        }
+      }
     }
   }
 }

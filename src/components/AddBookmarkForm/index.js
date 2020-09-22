@@ -1,6 +1,6 @@
 function AddBookmarkForm() {
   return `
-    <form class="js-create-bookmark-form add-bookmark-form">
+    <form class="js-create-bookmark-form hide">
       <label for="title">Title</label>
       <input class="add-bookmark-form__input" type="text" name="title" id="title">
       <label for="rating">Rating</label>

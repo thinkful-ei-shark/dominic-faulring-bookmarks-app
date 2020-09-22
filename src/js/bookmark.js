@@ -33,10 +33,6 @@ async function bookmark({ title, url, desc, rating }) {
     url = 'https://' + url;
   }
 
-  if (!(await validUrl(url))) {
-    throw new Error('This is an invalid URL');
-  }
-
   return {
     title,
     url,
@@ -44,17 +40,5 @@ async function bookmark({ title, url, desc, rating }) {
     rating
   };
 }
-
-const validUrl = async (url) => {
-  try {
-    const res = await fetch(url);
-    return res ? true : false;
-  } catch (err) {
-    console.log(err);
-    return false;
-  }
-};
-
-// function validateBookmarkInputs({ title, url, desc, rating }) {}
 
 export default bookmark;

@@ -18,14 +18,22 @@ function handleBookmarkSubmit() {
 }
 
 function handleBookmarkDelete() {
-  return $('.js-bookmarks-item').on('click', async function () {
-    // const id = $(this).data('bookmarkId');
-    // await api.deleteBookmark(id);
-    // return ui.render();
+  return $('.js-delete-icon').on('click', async function () {
+    const id = $(this).closest('aside').data('bookmarkId');
+    await api.deleteBookmark(id);
+    return ui.render();
+  });
+}
+
+function handleToggleForm() {
+  return $('.js-add-bookmark-btn').on('click', function () {
+    $('.js-create-bookmark-form').removeClass('hide');
+    $('.js-create-bookmark-form').addClass('add-bookmark-form');
   });
 }
 
 export default {
   handleBookmarkSubmit,
-  handleBookmarkDelete
+  handleBookmarkDelete,
+  handleToggleForm
 };
