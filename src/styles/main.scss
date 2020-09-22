@@ -22,7 +22,8 @@ h1,
 h2,
 h3,
 p,
-ul {
+ul,
+form {
   margin: 0;
 }
 
@@ -158,6 +159,16 @@ header {
       background-size: 100% 100%;
       width: 100%;
       height: 60%;
+    }
+
+    &__rating {
+      display: flex;
+
+      button {
+        background: transparent;
+        box-shadow: none;
+      }
+      // height: 100%;
     }
 
     &__btns {

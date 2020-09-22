@@ -16,7 +16,9 @@ async function render() {
   bookmarks.handleToggleForm();
   bookmarks.handleBookmarkSubmit();
   bookmarks.handleBookmarkCancel();
-  return bookmarks.handleBookmarkDelete();
+  bookmarks.handleBookmarkDelete();
+  bookmarks.handleChangeRating();
+  return;
 }
 
 export default {

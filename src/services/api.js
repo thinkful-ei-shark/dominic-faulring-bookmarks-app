@@ -35,8 +35,25 @@ async function deleteBookmark(id) {
   }
 }
 
+async function updateBookmark(id, updatedData) {
+  try {
+    const res = await fetch(`${API_URL}/dominic/bookmarks/${id}`, {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updatedData)
+    });
+    return res.json();
+  } catch (err) {
+    console.log(err.message);
+  }
+}
+
 export default {
   addBookmark,
   getBookmarks,
-  deleteBookmark
+  deleteBookmark,
+  updateBookmark
 };

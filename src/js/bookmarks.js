@@ -11,8 +11,6 @@ function handleBookmarkSubmit() {
     const rating = $(this).find('#rating').val();
     const desc = $(this).find('#description').val();
 
-    // @TODO - Handle input checks here?
-
     const returnedBookmark = await api.addBookmark(
       await bookmark({ title, url, rating, desc })
     );
@@ -39,6 +37,7 @@ function handleBookmarkDelete() {
   return $('.js-delete-icon').on('click', async function () {
     const id = $(this).closest('aside').data('bookmarkId');
     await api.deleteBookmark(id);
+    store.deleteBookmark(id);
     return ui.render();
   });
 }
@@ -50,9 +49,24 @@ function handleToggleForm() {
   });
 }
 
+function handleChangeRating() {
+  return $('.js-bookmark-list__item__rating button').on(
+    'click',
+    async function (e) {
+      e.preventDefault();
+      const bookmarkId = $(this).parent().parent().data('bookmarkId');
+      const rating = $(this).data('ratingNum');
+      await api.updateBookmark(bookmarkId, { rating });
+      store.updateBookmark(bookmarkId, { rating });
+      return ui.render();
+    }
+  );
+}
+
 export default {
   handleBookmarkSubmit,
   handleBookmarkDelete,
   handleToggleForm,
-  handleBookmarkCancel
+  handleBookmarkCancel,
+  handleChangeRating
 };

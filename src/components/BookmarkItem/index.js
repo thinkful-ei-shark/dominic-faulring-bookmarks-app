@@ -1,3 +1,4 @@
+import BookmarkRating from './BookmarkRating';
 import deleteIcon from './images/delete-icon.svg';
 import infoIcon from './images/info-icon.svg';
 import linkIcon from './images/link-icon.svg';
@@ -11,7 +12,9 @@ function BookmarkItem(bookmark) {
         bookmark.url
       )} onerror="this.onerror=null;this.src='https://mybrewsupply.com/wp-content/uploads/2020/07/placeholder.png';">
       <h2>${bookmark.title}</h2>
-      ${bookmark.rating ? `<p>${bookmark.rating}</p>` : '<p>No Rating</p>'}
+      <form class="js-bookmark-list__item__rating bookmark-list__item__rating">        
+        ${BookmarkRating(bookmark.rating)}
+      </form>
       <div class="bookmark-list__item__btns">
         <button>
           <img src=${infoIcon} alt="Info Icon">
