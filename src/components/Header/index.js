@@ -1,7 +1,7 @@
 function Header() {
   return `
     <header>
-      <h1>Bookmarks App</h1>
+      <h1>bookmark.me</h1>
     </header>
   `;
 }

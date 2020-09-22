@@ -1,7 +1,7 @@
 import plusIcon from './images/plus-icon.svg';
 
-function AddBookmarkButton() {
+function FilterBookmarksDropdown() {
   return `<button class="js-add-bookmark-btn add-bookmark-btn"><span>Add</span><img src=${plusIcon}></button>`;
 }
 
-export default AddBookmarkButton;
+export default FilterBookmarksDropdown;

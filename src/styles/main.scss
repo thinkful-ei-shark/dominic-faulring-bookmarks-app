@@ -32,9 +32,9 @@ ul {
 }
 
 button {
-  outline: none;
   cursor: pointer;
   border: none;
+  box-shadow: 0 0.5rem 1rem rgba($color: #000, $alpha: 0.4);
 }
 
 .hide {
@@ -48,10 +48,10 @@ button {
 
 // Header
 header {
-  h1 {
-    text-align: center;
-  }
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 8rem;
   margin-bottom: 4rem;
 }
 
@@ -63,11 +63,17 @@ header {
   width: 49%;
   background-color: #7215d8;
   height: 4.8rem;
-  color: #fff;
   font-weight: bold;
+  box-shadow: 0 0.5rem 1rem rgba($color: #000, $alpha: 0.4);
 
-  ul {
-    display: flex;
+  select {
+    width: 80%;
+    color: #fff;
+    background-color: transparent;
+    height: 100%;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
   }
 }
 
@@ -113,14 +119,22 @@ header {
     height: 4.8rem;
     border: none;
     border-radius: 0.4rem;
-    box-shadow: 0 0 1rem 0 rgba($color: #000, $alpha: 0.15);
+    // box-shadow: 0 0 1rem 0 rgba($color: #000, $alpha: 0.15);
     padding-left: 1.6rem;
   }
 
-  &__btn {
+  &__btns {
     margin-top: 1.6rem;
     height: 4.8rem;
-    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      background-color: #7215d8;
+      height: 100%;
+      width: 49%;
+      color: #fff;
+    }
   }
 }
 

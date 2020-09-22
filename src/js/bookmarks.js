@@ -1,4 +1,5 @@
 import api from '../services/api';
+import store from '../store';
 import ui from './ui';
 import bookmark from '../js/bookmark';
 
@@ -12,8 +13,25 @@ function handleBookmarkSubmit() {
 
     // @TODO - Handle input checks here?
 
-    await api.addBookmark(await bookmark({ title, url, rating, desc }));
+    const returnedBookmark = await api.addBookmark(
+      await bookmark({ title, url, rating, desc })
+    );
+    store.addBookmark(returnedBookmark);
     return ui.render();
+  });
+}
+
+function handleBookmarkCancel() {
+  return $('.add-bookmark-form__btns__cancel').on('click', async function (e) {
+    e.preventDefault();
+
+    // Reset the form
+    $(this).closest('form').trigger('reset');
+
+    // Hide the form using display: none
+    return $('.js-create-bookmark-form')
+      .removeClass('add-bookmark-form')
+      .addClass('hide');
   });
 }
 
@@ -35,5 +53,6 @@ function handleToggleForm() {
 export default {
   handleBookmarkSubmit,
   handleBookmarkDelete,
-  handleToggleForm
+  handleToggleForm,
+  handleBookmarkCancel
 };

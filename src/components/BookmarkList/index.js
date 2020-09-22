@@ -1,9 +1,11 @@
 import store from '../../store';
 import BookmarkItem from '../BookmarkItem';
+
 function BookmarkList() {
+  const { bookmarks } = store.bookmarkStore;
   return `
     <section class="bookmark-list">
-      ${store.bookmarks.map((bookmark) => `${BookmarkItem(bookmark)}`).join('')}
+      ${bookmarks.map((bookmark) => `${BookmarkItem(bookmark)}`).join('')}
     </section>
   `;
 }

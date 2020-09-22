@@ -1,11 +1,11 @@
 import AddBookmarkButton from '../AddBookmarkButton';
-import FilterBookmarksButton from '../FilterBookmarksButton';
+import FilterBookmarksDropdown from '../FilterBookmarksDropdown';
 
 function AddAndFilterButtons() {
   return `
     <div class="add-filter-btns">
       ${AddBookmarkButton()}
-      ${FilterBookmarksButton()}
+      ${FilterBookmarksDropdown()}
     </div>
   `;
 }

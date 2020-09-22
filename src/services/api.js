@@ -1,11 +1,9 @@
-import store from '../store';
 const API_URL = 'https://thinkful-list-api.herokuapp.com';
 
 async function getBookmarks() {
   try {
     const res = await fetch(`${API_URL}/dominic/bookmarks`);
-    store.bookmarks = await res.json();
-    return store.bookmarks;
+    return await res.json();
   } catch (err) {
     console.log(err.message);
   }

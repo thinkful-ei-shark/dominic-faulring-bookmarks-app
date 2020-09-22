@@ -9,7 +9,10 @@ function AddBookmarkForm() {
       <input class="add-bookmark-form__input" type="text" id="url">
       <label for="description">Description</label>
       <input class="add-bookmark-form__input" type="description" id="description">
-      <button class="add-bookmark-form__btn" type="submit">Add Bookmark</button>
+      <div class="add-bookmark-form__btns">
+        <button class="add-bookmark-form__btns__cancel" type="button">Cancel</button>
+        <button class="add-bookmark-form__btns__submit" type="submit">Submit</button>
+      </div>
     </form>
   `;
 }
