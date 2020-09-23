@@ -4,20 +4,20 @@
 
 ### As a user:
 
-- [ ] I can add bookmarks to my bookmark list. Bookmarks contain:
-  - [ ] title
-  - [ ] url link
-  - [ ] description
-  - [ ] rating (1-5)
-- [ ] I can see a list of my bookmarks when I first open the app
+- [x] I can add bookmarks to my bookmark list. Bookmarks contain:
+  - [x] title
+  - [x] url link
+  - [x] description
+  - [x] rating (1-5)
+- [x] I can see a list of my bookmarks when I first open the app
 
-  - [ ] All bookmarks in the list default to a "condensed" view showing only title and rating
+  - [x] All bookmarks in the list default to a "condensed" view showing only title and rating
 
 - [ ] I can click on a bookmark to display the "detailed" view
 
   - [ ] Detailed view expands to additionally display description and a "Visit Site" link
 
-- [ ] I can remove bookmarks from my bookmark list
+- [x] I can remove bookmarks from my bookmark list
 
 - [ ] I receive appropriate feedback when I cannot submit a bookmark
 
@@ -29,12 +29,12 @@
 
 ## Technical Requirements
 
-- [ ] Use `fetch` for AJAX calls and jQuery for DOM manipulation
+- [x] Use `fetch` for AJAX calls and jQuery for DOM manipulation
 
-- [ ] Use namespacing to adhere to good architecture practices
+- [x] Use namespacing to adhere to good architecture practices
 
-  - [ ] Minimal global variables
-  - [ ] Create modules in separate files to organize your code
+  - [x] Minimal global variables
+  - [x] Create modules in separate files to organize your code
   - [ ] Logically group your functions (e.g. API methods, store methods...)
 
 - [ ] Keep your Data out of the DOM

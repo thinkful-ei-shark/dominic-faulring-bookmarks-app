@@ -19,7 +19,7 @@ async function addBookmark({ title, url, desc, rating }) {
       },
       body: JSON.stringify({ title, url, desc, rating })
     });
-    return res.json();
+    return await res.json();
   } catch (err) {
     console.log(err.message);
   }
@@ -27,7 +27,7 @@ async function addBookmark({ title, url, desc, rating }) {
 
 async function deleteBookmark(id) {
   try {
-    await fetch(`${API_URL}/dominic/bookmarks/${id}`, {
+    return await fetch(`${API_URL}/dominic/bookmarks/${id}`, {
       method: 'DELETE'
     });
   } catch (err) {

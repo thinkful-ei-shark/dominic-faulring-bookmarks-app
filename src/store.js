@@ -17,16 +17,44 @@ const bookmarkStore = {
 // clone the bookmarkStore in each function and merge it
 // and then assign it to the new updated object.
 function addBookmarks(bookmarks) {
+  if (!bookmarks || !bookmarks.length) {
+    return;
+  }
+
   const nextState = produce(bookmarkStore, (draft) => {
-    bookmarks.forEach((bookmark) => draft.bookmarks.push(bookmark));
+    bookmarks.forEach((bookmark) => {
+      let currentBookmark = bookmark;
+
+      if (!currentBookmark.rating) {
+        currentBookmark.rating = 0;
+      }
+
+      if (!currentBookmark.desc) {
+        currentBookmark.desc = '';
+      }
+
+      draft.bookmarks.push(currentBookmark);
+    });
+
     return draft;
   });
+
   return Object.assign(bookmarkStore, nextState);
 }
 
 function addBookmark(bookmark) {
   const nextState = produce(bookmarkStore, (draft) => {
-    draft.bookmarks.push(bookmark);
+    let currentBookmark = bookmark;
+
+    if (!currentBookmark.rating) {
+      currentBookmark.rating = 0;
+    }
+
+    if (!currentBookmark.desc) {
+      currentBookmark.desc = '';
+    }
+
+    draft.bookmarks.push(currentBookmark);
     return draft;
   });
   return Object.assign(bookmarkStore, nextState);
@@ -34,7 +62,16 @@ function addBookmark(bookmark) {
 
 function updateBookmark(id, updatedBookmark) {
   const nextState = produce(bookmarkStore, (draft) => {
-    Object.assign(draft.bookmarks[getIndexOfItem(id)], updatedBookmark);
+    let currentBookmark = updatedBookmark;
+
+    if (!currentBookmark.rating) {
+      currentBookmark.rating = 0;
+    }
+
+    if (!currentBookmark.desc) {
+      currentBookmark.desc = '';
+    }
+    Object.assign(draft.bookmarks[getIndexOfItem(id)], currentBookmark);
     return draft;
   });
   return Object.assign(bookmarkStore, nextState);
@@ -72,6 +109,7 @@ function updateError() {
   return Object.assign(bookmarkStore, nextState);
 }
 
+// Helper function to get the id of a bookmark stored in the local bookmark array
 function getIndexOfItem(id) {
   return bookmarkStore.bookmarks.findIndex((bookmark) => bookmark.id === id);
 }

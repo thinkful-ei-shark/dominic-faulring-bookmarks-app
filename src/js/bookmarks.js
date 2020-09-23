@@ -56,6 +56,7 @@ function handleChangeRating() {
       e.preventDefault();
       const bookmarkId = $(this).parent().parent().data('bookmarkId');
       const rating = $(this).data('ratingNum');
+
       await api.updateBookmark(bookmarkId, { rating });
       store.updateBookmark(bookmarkId, { rating });
       return ui.render();
@@ -63,10 +64,19 @@ function handleChangeRating() {
   );
 }
 
+function handleFilterBookmarks() {
+  return $('.js-filter-bookmarks').on('change', function () {
+    const ratingNumber = $(this).val();
+    store.updateFilter(parseInt(ratingNumber));
+    return ui.render();
+  });
+}
+
 export default {
   handleBookmarkSubmit,
   handleBookmarkDelete,
   handleToggleForm,
   handleBookmarkCancel,
-  handleChangeRating
+  handleChangeRating,
+  handleFilterBookmarks
 };

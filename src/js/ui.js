@@ -18,6 +18,7 @@ async function render() {
   bookmarks.handleBookmarkCancel();
   bookmarks.handleBookmarkDelete();
   bookmarks.handleChangeRating();
+  bookmarks.handleFilterBookmarks();
   return;
 }
 
