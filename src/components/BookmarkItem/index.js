@@ -1,7 +1,6 @@
 import BookmarkRating from './BookmarkRating';
 import deleteIcon from './images/delete-icon.svg';
 import infoIcon from './images/info-icon.svg';
-import linkIcon from './images/link-icon.svg';
 
 function BookmarkItem(bookmark) {
   return `
@@ -15,13 +14,15 @@ function BookmarkItem(bookmark) {
       <form class="js-bookmark-list__item__rating bookmark-list__item__rating">        
         ${BookmarkRating(bookmark.rating)}
       </form>
+
+
+      <div class="bookmark-list__item__info">
+      
+      </div>
       <div class="bookmark-list__item__btns">
         <button>
           <img src=${infoIcon} alt="Info Icon">
         </button>
-        <a href=${bookmark.url} target="_blank">
-          <img src=${linkIcon} alt="External Link Icon">
-        </a>
         <button class="js-delete-icon">
           <img src=${deleteIcon} alt="Delete Icon">
         </button>

@@ -3,7 +3,10 @@ import produce from 'immer';
 const bookmarkStore = {
   bookmarks: [],
   adding: false,
-  error: null,
+  errors: {
+    title: null,
+    url: null
+  },
   filter: 0
 };
 
@@ -86,6 +89,10 @@ function deleteBookmark(id) {
 }
 
 function updateFilter(rating) {
+  if (!rating || rating === bookmarkStore.filter) {
+    return;
+  }
+
   const nextState = produce(bookmarkStore, (draft) => {
     draft.filter = rating;
     return draft;
@@ -101,9 +108,13 @@ function updateAdding() {
   return Object.assign(bookmarkStore, nextState);
 }
 
-function updateError() {
+function updateErrors(key, value) {
+  if (bookmarkStore.errors[key] === value) {
+    return;
+  }
+
   const nextState = produce(bookmarkStore, (draft) => {
-    draft.error = !draft.error;
+    draft.errors[key] = value;
     return draft;
   });
   return Object.assign(bookmarkStore, nextState);
@@ -121,6 +132,6 @@ export default {
   deleteBookmark,
   updateFilter,
   updateAdding,
-  updateError,
+  updateErrors,
   addBookmarks
 };

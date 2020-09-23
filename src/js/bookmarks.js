@@ -10,13 +10,31 @@ function handleBookmarkSubmit() {
     const url = $(this).find('#url').val();
     const rating = $(this).find('#rating').val();
     const desc = $(this).find('#description').val();
+    const errors = $(this).find('div.add-bookmark-form__errors');
 
-    const returnedBookmark = await api.addBookmark(
-      await bookmark({ title, url, rating, desc })
-    );
-    store.addBookmark(returnedBookmark);
-    return ui.render();
+    try {
+      errors.addClass('hide');
+      const returnedBookmark = await api.addBookmark(
+        await bookmark({ title, url, rating, desc })
+      );
+      store.addBookmark(returnedBookmark);
+      return ui.render();
+    } catch (err) {
+      errors.html(outputErrors());
+      return errors.removeClass('hide');
+    }
   });
+}
+
+function outputErrors() {
+  const { errors } = store.bookmarkStore;
+  let errString = '';
+  for (let key in errors) {
+    if (errors[key] !== null) {
+      errString += `<p>${errors[key]}</p>`;
+    }
+  }
+  return errString;
 }
 
 function handleBookmarkCancel() {
@@ -66,8 +84,14 @@ function handleChangeRating() {
 
 function handleFilterBookmarks() {
   return $('.js-filter-bookmarks').on('change', function () {
-    const ratingNumber = $(this).val();
-    store.updateFilter(parseInt(ratingNumber));
+    const rating = $(this).val();
+
+    if (rating === 'unrated' || rating === 'new' || rating === 'old') {
+      store.updateFilter(rating);
+      return ui.render();
+    }
+
+    store.updateFilter(parseInt(rating));
     return ui.render();
   });
 }
