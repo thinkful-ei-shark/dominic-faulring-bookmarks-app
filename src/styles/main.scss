@@ -21,6 +21,7 @@ body {
 h1,
 h2,
 h3,
+h4,
 p,
 ul,
 form {
@@ -57,22 +58,43 @@ header {
   margin-bottom: 4rem;
 }
 
+.flash-message {
+  width: 100%;
+  height: 6.4rem;
+  border-radius: 0.4rem;
+  margin-bottom: 2.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
 .filter-bookmarks {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   width: 49%;
   background-color: #7215d8;
   height: 4.8rem;
-  font-weight: bold;
   box-shadow: 0 0.5rem 1rem rgba($color: #000, $alpha: 0.4);
+  position: relative;
+  justify-content: center;
+
+  label {
+    position: absolute;
+    font-weight: bold;
+    color: #fff;
+    width: 100%;
+    width: 80%;
+  }
 
   select {
-    width: 80%;
+    position: relative;
     color: #fff;
     background-color: transparent;
     height: 100%;
+    width: 80%;
     font-weight: 700;
     border: none;
     cursor: pointer;
@@ -161,6 +183,10 @@ header {
   grid-template-columns: repeat(1, 1fr);
   gap: 1.6rem 0;
 
+  &__empty {
+    text-align: center;
+  }
+
   &__item {
     display: flex;
     flex-direction: column;
@@ -184,6 +210,38 @@ header {
       button {
         background: transparent;
         box-shadow: none;
+        width: 4.8rem;
+        height: 4.8rem;
+      }
+    }
+
+    &__info {
+      padding: 0;
+
+      h2 {
+        padding-left: 0.8rem;
+        margin-bottom: 0.4rem;
+      }
+    }
+
+    &__more-info {
+      margin: 0.8rem 0;
+      padding-left: 0.8rem;
+
+      &__btns {
+        display: flex;
+
+        a {
+          display: flex;
+          justify-content: center;
+          text-decoration: none;
+          background: #0a76db;
+          padding: 0.4rem;
+          margin-top: 0.8rem;
+          color: #fff;
+          border-radius: 0.4rem;
+          width: 8rem;
+        }
       }
     }
 

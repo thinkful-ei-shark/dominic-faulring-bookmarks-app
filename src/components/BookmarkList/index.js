@@ -1,6 +1,8 @@
 import store from '../../store';
 import BookmarkItem from '../BookmarkItem';
 
+// I really need to slim this down 😂 Brute forced my way through this but a
+// helper function could really help shrink this function a lot. Come on DOM.
 function BookmarkList() {
   const { bookmarks } = store.bookmarkStore;
   const newestBookmarks = [];
@@ -9,7 +11,15 @@ function BookmarkList() {
     newestBookmarks.push(bookmarks[i]);
   }
 
+  if (!bookmarks.length) {
+    return noBookmarksFound();
+  }
+
   if (store.bookmarkStore.filter && store.bookmarkStore.filter === 'new') {
+    if (!newestBookmarks.length) {
+      return noBookmarksFound();
+    }
+
     return `
       <section class="bookmark-list">
         ${newestBookmarks
@@ -20,6 +30,9 @@ function BookmarkList() {
   }
 
   if (store.bookmarkStore.filter && store.bookmarkStore.filter === 'old') {
+    if (!bookmarks.length) {
+      return noBookmarksFound();
+    }
     return `
       <section class="bookmark-list">
         ${bookmarks.map((bookmark) => `${BookmarkItem(bookmark)}`).join('')}
@@ -31,6 +44,10 @@ function BookmarkList() {
     const filteredBookmarks = bookmarks.filter(
       (bookmark) => bookmark.rating === 0
     );
+
+    if (!filteredBookmarks.length) {
+      return noBookmarksFound(true);
+    }
 
     const otherBookmarks = bookmarks.filter((bookmark) => bookmark.rating > 0);
 
@@ -56,6 +73,10 @@ function BookmarkList() {
       a.rating > b.rating ? 1 : -1
     );
 
+    if (!filteredBookmarks.length) {
+      return noBookmarksFound(true);
+    }
+
     return `
       <section class="bookmark-list">
         ${sortedBookmarks
@@ -68,6 +89,22 @@ function BookmarkList() {
   return `
     <section class="bookmark-list">
       ${newestBookmarks.map((bookmark) => `${BookmarkItem(bookmark)}`).join('')}
+    </section>
+  `;
+}
+
+function noBookmarksFound(exists) {
+  if (exists) {
+    return `
+      <section class='bookmark-list'>
+        <h2 class="bookmark-list__empty">No Bookmarks Found 😕</h2>
+      </section>
+    `;
+  }
+
+  return `
+    <section class='bookmark-list'>
+      <h3 class="bookmark-list__empty">Add Your First Bookmark 🎉</h3>
     </section>
   `;
 }

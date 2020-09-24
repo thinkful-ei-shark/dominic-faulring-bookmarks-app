@@ -1,5 +1,9 @@
-function FlashMessage() {
-  return `<div>FLASH M3$$AG3</div>`;
+function FlashMessage(message) {
+  return `
+    <div class="js-flash-message hide">
+      <p>${message}</p>
+    </div>
+  `;
 }
 
 export default FlashMessage;

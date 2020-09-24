@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import api from '../services/api';
 import store from '../store';
 import ui from './ui';
@@ -38,8 +39,15 @@ function outputErrors() {
 }
 
 function handleBookmarkCancel() {
-  return $('.add-bookmark-form__btns__cancel').on('click', async function (e) {
+  return $('.add-bookmark-form__btns__cancel').on('click', function (e) {
     e.preventDefault();
+
+    // Reset any errors if any were present
+    store.updateErrors('title', null);
+    store.updateErrors('url', null);
+
+    // Clear out the HTML inside the error div and reset it
+    $('.add-bookmark-form__errors').html('').addClass('hide');
 
     // Reset the form
     $(this).closest('form').trigger('reset');
@@ -67,12 +75,22 @@ function handleToggleForm() {
   });
 }
 
+function handleToggleInfo() {
+  return $('.js-handle-toggle-more-info-btn').on('click', function () {
+    return $(this)
+      .parent()
+      .parent()
+      .find('.bookmark-list__item__more-info')
+      .toggleClass('hide');
+  });
+}
+
 function handleChangeRating() {
   return $('.js-bookmark-list__item__rating button').on(
     'click',
     async function (e) {
       e.preventDefault();
-      const bookmarkId = $(this).parent().parent().data('bookmarkId');
+      const bookmarkId = $(this).closest('aside').data('bookmarkId');
       const rating = $(this).data('ratingNum');
 
       await api.updateBookmark(bookmarkId, { rating });
@@ -102,5 +120,6 @@ export default {
   handleToggleForm,
   handleBookmarkCancel,
   handleChangeRating,
-  handleFilterBookmarks
+  handleFilterBookmarks,
+  handleToggleInfo
 };

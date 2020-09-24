@@ -1,7 +1,9 @@
+import $ from 'jquery';
 import bookmarks from './bookmarks';
 import AddAndFilterButtons from '../components/AddAndFilterButtons';
 import AddBookmarkForm from '../components/AddBookmarkForm';
 import BookmarkList from '../components/BookmarkList';
+import FlashMessage from '../components/FlashMessage';
 
 async function render() {
   $('main').html(`
@@ -14,6 +16,7 @@ async function render() {
   bookmarks.handleToggleForm();
   bookmarks.handleBookmarkSubmit();
   bookmarks.handleBookmarkCancel();
+  bookmarks.handleToggleInfo();
   bookmarks.handleBookmarkDelete();
   bookmarks.handleChangeRating();
   bookmarks.handleFilterBookmarks();

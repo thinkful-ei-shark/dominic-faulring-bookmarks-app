@@ -1,8 +1,14 @@
 const API_URL = 'https://thinkful-list-api.herokuapp.com';
+import {
+  uniqueNamesGenerator,
+  adjectives,
+  colors,
+  animals
+} from 'unique-names-generator';
 
 async function getBookmarks() {
   try {
-    const res = await fetch(`${API_URL}/dominic/bookmarks`);
+    const res = await fetch(`${API_URL}/${getUsername()}/bookmarks`);
     return await res.json();
   } catch (err) {
     console.log(err.message);
@@ -11,7 +17,7 @@ async function getBookmarks() {
 
 async function addBookmark({ title, url, desc, rating }) {
   try {
-    const res = await fetch(`${API_URL}/dominic/bookmarks`, {
+    const res = await fetch(`${API_URL}/${getUsername()}/bookmarks`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -27,7 +33,7 @@ async function addBookmark({ title, url, desc, rating }) {
 
 async function deleteBookmark(id) {
   try {
-    return await fetch(`${API_URL}/dominic/bookmarks/${id}`, {
+    return await fetch(`${API_URL}/${getUsername()}/bookmarks/${id}`, {
       method: 'DELETE'
     });
   } catch (err) {
@@ -37,7 +43,7 @@ async function deleteBookmark(id) {
 
 async function updateBookmark(id, updatedData) {
   try {
-    const res = await fetch(`${API_URL}/dominic/bookmarks/${id}`, {
+    const res = await fetch(`${API_URL}/${getUsername()}/bookmarks/${id}`, {
       method: 'PATCH',
       headers: {
         Accept: 'application/json',
@@ -49,6 +55,18 @@ async function updateBookmark(id, updatedData) {
   } catch (err) {
     console.log(err.message);
   }
+}
+
+async function getUsername() {
+  if (localStorage.getItem('bookmarkUsername')) {
+    return JSON.parse(localStorage.getItem('bookmarkUsername'));
+  }
+
+  const username = uniqueNamesGenerator({
+    dictionaries: [adjectives, colors, animals]
+  });
+  localStorage.setItem('bookmarkUsername', JSON.stringify(username));
+  return username;
 }
 
 export default {

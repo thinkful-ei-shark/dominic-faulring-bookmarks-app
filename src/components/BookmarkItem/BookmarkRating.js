@@ -5,19 +5,19 @@ function BookmarkRating(num) {
   if (!num || num === 0) {
     return `
       <button type="submit" class="rating-icon-empty" data-rating-num="1">
-        <img src=${emptyStarIcon}>
+        <img src=${emptyStarIcon} alt="Empty Star">
       </button>
       <button type="submit" class="rating-icon-empty" data-rating-num="2">
-        <img src=${emptyStarIcon}>
+        <img src=${emptyStarIcon} alt="Empty Star">
       </button>
       <button type="submit" class="rating-icon-empty" data-rating-num="3">
-        <img src=${emptyStarIcon}>
+        <img src=${emptyStarIcon} alt="Empty Star">
       </button>
       <button type="submit" class="rating-icon-empty" data-rating-num="4">
-        <img src=${emptyStarIcon}>
+        <img src=${emptyStarIcon} alt="Empty Star">
       </button>
       <button type="submit" class="rating-icon-empty" data-rating-num="5">
-        <img src=${emptyStarIcon}>
+        <img src=${emptyStarIcon} alt="Empty Star">
       </button>
     `;
   }
@@ -27,20 +27,20 @@ function BookmarkRating(num) {
     if (i === num) {
       stars += `
         <button type="submit" disabled="true" data-rating-num=${i}>
-          <img src=${filledStarIcon}>
+          <img src=${filledStarIcon} alt="Filled Star">
         </button>
       `;
     } else if (i <= num) {
       // change to full stars
       stars += `
         <button type="submit" data-rating-num=${i}>
-          <img src=${filledStarIcon}>
+          <img src=${filledStarIcon} alt="Filled Star">
         </button>
       `;
     } else {
       stars += `
         <button type="submit" data-rating-num=${i}>
-          <img src=${emptyStarIcon}>
+          <img src=${emptyStarIcon} alt="Empty Star">
         </button>
       `;
     }
