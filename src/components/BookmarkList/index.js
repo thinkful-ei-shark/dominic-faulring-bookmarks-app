@@ -103,7 +103,7 @@ function noBookmarksFound(exists) {
 
   return `
     <section class='bookmark-list'>
-      <h3 class="bookmark-list__empty">Add Your First Bookmark 🎉</h3>
+      <h2 class="bookmark-list__empty">Add Your First Bookmark!</h2>
     </section>
   `;
 }
