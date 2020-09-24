@@ -7,11 +7,13 @@ function BookmarkItem(bookmark) {
     <aside class="js-bookmarks-item bookmark-list__item" data-bookmark-id=${
       bookmark.id
     }>
-      <img class="bookmark-list__item__thumbnail" alt=${
-        bookmark.title
-      } src=${getImage(
+
+      <div class="bookmark-list__item__thumbnail">
+        <img alt=${bookmark.title} src=${getImage(
     bookmark.url
   )} onerror="this.onerror=null;this.src='https://mybrewsupply.com/wp-content/uploads/2020/07/placeholder.png';">
+      </div>
+      
       
       <div class="bookmark-list__item__info">
         <h2>${bookmark.title}</h2>
