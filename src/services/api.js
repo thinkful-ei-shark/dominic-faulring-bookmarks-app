@@ -57,7 +57,7 @@ async function updateBookmark(id, updatedData) {
   }
 }
 
-async function getUsername() {
+function getUsername() {
   if (localStorage.getItem('bookmarkUsername')) {
     return JSON.parse(localStorage.getItem('bookmarkUsername'));
   }
@@ -65,6 +65,8 @@ async function getUsername() {
   const username = uniqueNamesGenerator({
     dictionaries: [adjectives, colors, animals]
   });
+
+  console.log(username);
   localStorage.setItem('bookmarkUsername', JSON.stringify(username));
   return username;
 }
