@@ -1,8 +1,7 @@
 import store from '../../store';
 import BookmarkItem from '../BookmarkItem';
 
-// I really need to slim this down 😂 Brute forced my way through this but a
-// helper function could really help shrink this function a lot. Come on DOM.
+// I really need to slim this down 😂
 function BookmarkList() {
   const { bookmarks } = store.bookmarkStore;
   const newestBookmarks = [];

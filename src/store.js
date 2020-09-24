@@ -64,7 +64,6 @@ function addBookmark(bookmark) {
 }
 
 function updateBookmark(id, updatedBookmark) {
-  console.log(updatedBookmark);
   const nextState = produce(bookmarkStore, (draft) => {
     let currentBookmark = updatedBookmark;
 
