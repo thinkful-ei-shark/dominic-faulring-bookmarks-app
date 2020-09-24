@@ -2,6 +2,8 @@
 
 ### [Live Site](https://thinkful-ei-shark.github.io/dominic-faulring-bookmarks-app/)
 
+Tried really hard to get a good project structure going and keeping it DRY. At the moment I'm getting a 100 for accessibility inside Chrome lighthouse which was a big goal of mine. To run the project locally download the repository and run `npm install` followed by `npm run dev` to launch webpack dev server.
+
 ## User Stories
 
 ### As a user:
