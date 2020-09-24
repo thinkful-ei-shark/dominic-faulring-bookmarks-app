@@ -19,7 +19,7 @@
 
 - [x] I can remove bookmarks from my bookmark list
 
-- [ ] I receive appropriate feedback when I cannot submit a bookmark
+- [x] I receive appropriate feedback when I cannot submit a bookmark
 
   - [x] Check all validations in the API documentation (e.g. title and url field required)
 
@@ -38,7 +38,7 @@
 
   - [x] Minimal global variables
   - [x] Create modules in separate files to organize your code
-  - [ ] Logically group your functions (e.g. API methods, store methods...)
+  - [x] Logically group your functions (e.g. API methods, store methods...)
 
 - [x] Keep your Data out of the DOM
   - [x] No direct DOM manipulation in your event handlers!
