@@ -2,7 +2,6 @@ import produce from 'immer';
 
 const bookmarkStore = {
   bookmarks: [],
-  adding: false,
   errors: {
     title: null,
     url: null
