@@ -1,6 +1,6 @@
 # Bookmarks App
 
-### [Live Site](https://bookmarks-app.domcodesjs.vercel.app/)
+### [Live Site](https://thinkful-ei-shark.github.io/dominic-faulring-bookmarks-app/)
 
 ## User Stories
 
