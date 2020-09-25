@@ -1,6 +1,8 @@
 import BookmarkRating from './BookmarkRating';
 import deleteIcon from './images/delete-icon.svg';
 import infoIcon from './images/info-icon.svg';
+const thumbnail_url =
+  'https://api.thumbnail.ws/api/ab5e9acacf605af02514b3f6b772e585479711882c4d/thumbnail/get?url=';
 
 function BookmarkItem(bookmark) {
   return `
@@ -50,7 +52,7 @@ function BookmarkItem(bookmark) {
 }
 
 function getImage(url) {
-  return `https://api.thumbnail.ws/api/ab5e9acacf605af02514b3f6b772e585479711882c4d/thumbnail/get?url=${url}&width=480`;
+  return `${thumbnail_url}${url}&width=480`;
 }
 
 export default BookmarkItem;
