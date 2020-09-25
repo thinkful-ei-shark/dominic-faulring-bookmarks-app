@@ -4,27 +4,25 @@ import store from '../store';
 import ui from './ui';
 import bookmark from '../js/bookmark';
 
-function handleBookmarkSubmit() {
-  return $('.js-create-bookmark-form').on('submit', async function (e) {
-    e.preventDefault();
-    const title = $(this).find('#title').val();
-    const url = $(this).find('#url').val();
-    const rating = $(this).find('#rating').val();
-    const desc = $(this).find('#description').val();
-    const errors = $(this).find('div.add-bookmark-form__errors');
+async function handleBookmarkSubmit(e) {
+  e.preventDefault();
+  const title = $(this).find('#title').val();
+  const url = $(this).find('#url').val();
+  const rating = $(this).find('#rating').val();
+  const desc = $(this).find('#description').val();
+  const errors = $(this).find('div.add-bookmark-form__errors');
 
-    try {
-      errors.addClass('hide');
-      const returnedBookmark = await api.addBookmark(
-        await bookmark({ title, url, rating, desc })
-      );
-      store.addBookmark(returnedBookmark);
-      return ui.render();
-    } catch (err) {
-      errors.html(outputErrors());
-      return errors.removeClass('hide');
-    }
-  });
+  try {
+    errors.addClass('hide');
+    const returnedBookmark = await api.addBookmark(
+      await bookmark({ title, url, rating, desc })
+    );
+    store.addBookmark(returnedBookmark);
+    return ui.render();
+  } catch (err) {
+    errors.html(outputErrors());
+    return errors.removeClass('hide');
+  }
 }
 
 function outputErrors() {
@@ -38,80 +36,65 @@ function outputErrors() {
   return errString;
 }
 
-function handleBookmarkCancel() {
-  return $('.add-bookmark-form__btns__cancel').on('click', function (e) {
-    e.preventDefault();
+function handleBookmarkCancel(e) {
+  e.preventDefault();
 
-    // Reset any errors if any were present
-    store.updateErrors('title', null);
-    store.updateErrors('url', null);
+  // Reset any errors if any were present
+  store.updateErrors('title', null);
+  store.updateErrors('url', null);
 
-    // Clear out the HTML inside the error div and reset it
-    $('.add-bookmark-form__errors').html('').addClass('hide');
+  // Clear out the HTML inside the error div and reset it
+  $('.add-bookmark-form__errors').html('').addClass('hide');
 
-    // Reset the form
-    $(this).closest('form').trigger('reset');
+  // Reset the form
+  $(this).closest('form').trigger('reset');
 
-    // Hide the form using display: none
-    return $('.js-create-bookmark-form')
-      .removeClass('add-bookmark-form')
-      .addClass('hide');
-  });
+  // Hide the form using display: none
+  return $('.js-create-bookmark-form')
+    .removeClass('add-bookmark-form')
+    .addClass('hide');
 }
 
-function handleBookmarkDelete() {
-  return $('.js-delete-icon').on('click', async function () {
-    const id = $(this).closest('aside').data('bookmarkId');
-    await api.deleteBookmark(id);
-    store.deleteBookmark(id);
-    return ui.render();
-  });
+async function handleBookmarkDelete() {
+  const id = $(this).closest('aside').data('bookmarkId');
+  await api.deleteBookmark(id);
+  store.deleteBookmark(id);
+  return ui.render();
 }
 
 function handleToggleForm() {
-  return $('.js-add-bookmark-btn').on('click', function () {
-    $('.js-create-bookmark-form').removeClass('hide');
-    $('.js-create-bookmark-form').addClass('add-bookmark-form');
-  });
+  $('.js-create-bookmark-form').removeClass('hide');
+  return $('.js-create-bookmark-form').addClass('add-bookmark-form');
 }
 
 function handleToggleInfo() {
-  return $('.js-handle-toggle-more-info-btn').on('click', function () {
-    return $(this)
-      .parent()
-      .parent()
-      .find('.bookmark-list__item__more-info')
-      .toggleClass('hide');
-  });
+  return $(this)
+    .parent()
+    .parent()
+    .find('.bookmark-list__item__more-info')
+    .toggleClass('hide');
 }
 
-function handleChangeRating() {
-  return $('.js-bookmark-list__item__rating button').on(
-    'click',
-    async function (e) {
-      e.preventDefault();
-      const bookmarkId = $(this).closest('aside').data('bookmarkId');
-      const rating = $(this).data('ratingNum');
+async function handleChangeRating(e) {
+  e.preventDefault();
+  const bookmarkId = $(this).closest('aside').data('bookmarkId');
+  const rating = $(this).data('ratingNum');
 
-      await api.updateBookmark(bookmarkId, { rating });
-      store.updateBookmark(bookmarkId, { rating });
-      return ui.render();
-    }
-  );
+  await api.updateBookmark(bookmarkId, { rating });
+  store.updateBookmark(bookmarkId, { rating });
+  return ui.render();
 }
 
 function handleFilterBookmarks() {
-  return $('.js-filter-bookmarks').on('change', function () {
-    const rating = $(this).val();
+  const rating = $(this).val();
 
-    if (rating === 'unrated' || rating === 'new' || rating === 'old') {
-      store.updateFilter(rating);
-      return ui.render();
-    }
-
-    store.updateFilter(parseInt(rating));
+  if (rating === 'unrated' || rating === 'new' || rating === 'old') {
+    store.updateFilter(rating);
     return ui.render();
-  });
+  }
+
+  store.updateFilter(parseInt(rating));
+  return ui.render();
 }
 
 export default {
