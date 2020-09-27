@@ -8,6 +8,12 @@ const bookmarkStore = {
   },
   filter: 0,
   adding: false,
+  failedFormInputs: {
+    title: null,
+    url: null,
+    rating: null,
+    desc: null,
+  },
 };
 
 // I don't want to mutate the bookmarkStore directly so I'm using a
@@ -60,6 +66,32 @@ function addBookmark(bookmark) {
     }
 
     draft.bookmarks.push(currentBookmark);
+    return draft;
+  });
+  return Object.assign(bookmarkStore, nextState);
+}
+
+function resetFailedFormInputs() {
+  const nextState = produce(bookmarkStore, (draft) => {
+    draft.failedFormInputs = {
+      title: null,
+      url: null,
+      rating: null,
+      desc: null,
+    };
+    return draft;
+  });
+  return Object.assign(bookmarkStore, nextState);
+}
+
+function updateFailedFormInputs({ title, url, rating, desc }) {
+  const nextState = produce(bookmarkStore, (draft) => {
+    draft.failedFormInputs = {
+      title: !title || !title.length ? '' : title,
+      url: !url || !url.length ? '' : url,
+      rating: !rating || !rating.length ? null : rating,
+      desc: !desc || !desc.length ? '' : desc,
+    };
     return draft;
   });
   return Object.assign(bookmarkStore, nextState);
@@ -147,4 +179,6 @@ export default {
   updateErrors,
   addBookmarks,
   updateExpanded,
+  resetFailedFormInputs,
+  updateFailedFormInputs,
 };
