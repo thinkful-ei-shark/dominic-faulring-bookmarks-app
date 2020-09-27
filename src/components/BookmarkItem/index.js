@@ -24,20 +24,27 @@ function BookmarkItem(bookmark) {
         </form>
       </div>
 
-      <div class="bookmark-list__item__more-info hide">
-        <h3>Description:</h3>
-        ${
-          bookmark.desc
-            ? `<p>${bookmark.desc}</p>`
-            : '<p>No description added.</p>'
-        }
 
-        <div class="bookmark-list__item__more-info__btns">
-          <a href=${
-            bookmark.url
-          } alt="Url Link" rel=”noopener” target="_blank">Visit Link</a>
-        </div>
-      </div>
+      ${
+        bookmark.expanded
+          ? `
+          <div class="bookmark-list__item__more-info">
+            <h3>Description:</h3>
+            ${
+              bookmark.desc
+                ? `<p>${bookmark.desc}</p>`
+                : '<p>No description added.</p>'
+            }
+
+            <div class="bookmark-list__item__more-info__btns">
+              <a href=${
+                bookmark.url
+              } alt="Url Link" rel=”noopener” target="_blank">Visit Link</a>
+            </div>
+          </div>
+        `
+          : ''
+      }
 
       <div class="bookmark-list__item__btns">
         <button class="js-handle-toggle-more-info-btn">

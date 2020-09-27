@@ -10,9 +10,8 @@ async function render() {
     ${AddBookmarkForm()}
     ${BookmarkList()}
   `);
-
+  $('.js-add-bookmark-form').on('submit', bookmarks.handleBookmarkSubmit);
   // Attach Event Handlers
-  $('.js-create-bookmark-form').on('submit', bookmarks.handleBookmarkSubmit);
   $('.add-bookmark-form__btns__cancel').on(
     'click',
     bookmarks.handleBookmarkCancel
@@ -29,5 +28,5 @@ async function render() {
 }
 
 export default {
-  render
+  render,
 };

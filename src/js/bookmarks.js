@@ -10,49 +10,28 @@ async function handleBookmarkSubmit(e) {
   const url = $(this).find('#url').val();
   const rating = $(this).find('#rating').val();
   const desc = $(this).find('#description').val();
-  const errors = $(this).find('div.add-bookmark-form__errors');
 
   try {
-    errors.addClass('hide');
     const returnedBookmark = await api.addBookmark(
       await bookmark({ title, url, rating, desc })
     );
     store.addBookmark(returnedBookmark);
+    store.resetFailedFormInputs();
+    store.updateAdding();
     return ui.render();
   } catch (err) {
-    errors.html(outputErrors());
-    return errors.removeClass('hide');
+    store.updateFailedFormInputs({ title, url, rating, desc });
+    return ui.render();
   }
-}
-
-function outputErrors() {
-  const { errors } = store.bookmarkStore;
-  let errString = '';
-  for (let key in errors) {
-    if (errors[key] !== null) {
-      errString += `<p>${errors[key]}</p>`;
-    }
-  }
-  return errString;
 }
 
 function handleBookmarkCancel(e) {
   e.preventDefault();
-
-  // Reset any errors if any were present
   store.updateErrors('title', null);
   store.updateErrors('url', null);
-
-  // Clear out the HTML inside the error div and reset it
-  $('.add-bookmark-form__errors').html('').addClass('hide');
-
-  // Reset the form
-  $(this).closest('form').trigger('reset');
-
-  // Hide the form using display: none
-  return $('.js-create-bookmark-form')
-    .removeClass('add-bookmark-form')
-    .addClass('hide');
+  store.updateAdding();
+  store.resetFailedFormInputs();
+  return ui.render();
 }
 
 async function handleBookmarkDelete() {
@@ -62,17 +41,18 @@ async function handleBookmarkDelete() {
   return ui.render();
 }
 
+// do again
 function handleToggleForm() {
-  $('.js-create-bookmark-form').removeClass('hide');
-  return $('.js-create-bookmark-form').addClass('add-bookmark-form');
+  if (!store.bookmarkStore.adding) {
+    store.updateAdding();
+    return ui.render();
+  }
 }
 
 function handleToggleInfo() {
-  return $(this)
-    .parent()
-    .parent()
-    .find('.bookmark-list__item__more-info')
-    .toggleClass('hide');
+  const bookmarkId = $(this).parent().parent().data('bookmarkId');
+  store.updateExpanded(bookmarkId);
+  return ui.render();
 }
 
 async function handleChangeRating(e) {
@@ -104,5 +84,5 @@ export default {
   handleBookmarkCancel,
   handleChangeRating,
   handleFilterBookmarks,
-  handleToggleInfo
+  handleToggleInfo,
 };
