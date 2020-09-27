@@ -4,9 +4,10 @@ const bookmarkStore = {
   bookmarks: [],
   errors: {
     title: null,
-    url: null
+    url: null,
   },
-  filter: 0
+  filter: 0,
+  adding: false,
 };
 
 // I don't want to mutate the bookmarkStore directly so I'm using a
@@ -34,6 +35,8 @@ function addBookmarks(bookmarks) {
       if (!currentBookmark.desc) {
         currentBookmark.desc = '';
       }
+
+      currentBookmark.expanded = false;
 
       draft.bookmarks.push(currentBookmark);
     });
@@ -99,6 +102,16 @@ function updateFilter(rating) {
   return Object.assign(bookmarkStore, nextState);
 }
 
+function updateExpanded(id) {
+  const nextState = produce(bookmarkStore, (draft) => {
+    draft.bookmarks[getIndexOfItem(id)].expanded = !draft.bookmarks[
+      getIndexOfItem(id)
+    ].expanded;
+    return draft;
+  });
+  return Object.assign(bookmarkStore, nextState);
+}
+
 function updateAdding() {
   const nextState = produce(bookmarkStore, (draft) => {
     draft.adding = !draft.adding;
@@ -132,5 +145,6 @@ export default {
   updateFilter,
   updateAdding,
   updateErrors,
-  addBookmarks
+  addBookmarks,
+  updateExpanded,
 };

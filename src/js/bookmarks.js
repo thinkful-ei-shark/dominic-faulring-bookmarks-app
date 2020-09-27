@@ -25,6 +25,7 @@ async function handleBookmarkSubmit(e) {
   }
 }
 
+// do again?
 function outputErrors() {
   const { errors } = store.bookmarkStore;
   let errString = '';
@@ -36,6 +37,7 @@ function outputErrors() {
   return errString;
 }
 
+// do again
 function handleBookmarkCancel(e) {
   e.preventDefault();
 
@@ -62,17 +64,18 @@ async function handleBookmarkDelete() {
   return ui.render();
 }
 
+// do again
 function handleToggleForm() {
+  store.updateAdding();
+  return render();
   $('.js-create-bookmark-form').removeClass('hide');
   return $('.js-create-bookmark-form').addClass('add-bookmark-form');
 }
 
 function handleToggleInfo() {
-  return $(this)
-    .parent()
-    .parent()
-    .find('.bookmark-list__item__more-info')
-    .toggleClass('hide');
+  const bookmarkId = $(this).parent().parent().data('bookmarkId');
+  store.updateExpanded(bookmarkId);
+  return ui.render();
 }
 
 async function handleChangeRating(e) {
@@ -104,5 +107,5 @@ export default {
   handleBookmarkCancel,
   handleChangeRating,
   handleFilterBookmarks,
-  handleToggleInfo
+  handleToggleInfo,
 };
